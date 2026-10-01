@@ -1,0 +1,173 @@
+/* Steampunk / néon — panneaux laiton sur fond chaufferie sombre */
+
+:root {
+    --brass: #c9963c;
+    --brass-dark: #7a5a1e;
+    --ink: #f3e9d2;
+    --bg: #0d0f14;
+    --panel: #171a21;
+    --neon-cyan: #39e6ff;
+    --neon-pink: #ff3ec8;
+    --neon-amber: #ffb02e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        radial-gradient(1000px 500px at 15% -5%, rgba(255, 176, 46, 0.12), transparent 60%),
+        radial-gradient(900px 500px at 90% 110%, rgba(57, 230, 255, 0.10), transparent 60%),
+        radial-gradient(700px 400px at 85% 0%, rgba(255, 62, 200, 0.08), transparent 60%),
+        var(--bg);
+    min-height: 100vh;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 320px 1fr 300px;
+    gap: 18px;
+    max-width: 1280px;
+}
+
+@media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
+}
+
+section, article {
+    background: linear-gradient(180deg, #1d212b, var(--panel));
+    border: 1px solid var(--brass-dark);
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+    box-shadow:
+        inset 0 0 0 1px rgba(201, 150, 60, 0.15),
+        inset 0 0 30px rgba(0, 0, 0, 0.6),
+        0 0 18px rgba(57, 230, 255, 0.06);
+}
+
+/* rivets d'angle façon laiton */
+section::before, article::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: 7px;
+    pointer-events: none;
+    background:
+        radial-gradient(circle 4px at 6px 6px, var(--brass) 98%, transparent),
+        radial-gradient(circle 4px at calc(100% - 6px) 6px, var(--brass) 98%, transparent),
+        radial-gradient(circle 4px at 6px calc(100% - 6px), var(--brass) 98%, transparent),
+        radial-gradient(circle 4px at calc(100% - 6px) calc(100% - 6px), var(--brass) 98%, transparent);
+    opacity: 0.7;
+}
+
+section > h2, article > h2 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brass);
+    text-shadow: 0 0 12px rgba(255, 176, 46, 0.45);
+    border-bottom: 1px solid var(--brass-dark);
+    padding-bottom: 8px;
+}
+
+article { margin-bottom: 14px; }
+article:last-child { margin-bottom: 0; }
+
+#player-info {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+#player-info img {
+    width: 84px;
+    height: 84px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--brass);
+    box-shadow: 0 0 14px rgba(57, 230, 255, 0.5);
+    background: #0a0c10;
+}
+
+#player-info h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+#player-info p {
+    margin: 2px 0 0;
+    font-style: italic;
+    color: var(--neon-pink);
+    text-shadow: 0 0 8px rgba(255, 62, 200, 0.6);
+}
+
+#stats p {
+    margin: 6px 0;
+    padding: 6px 10px;
+    background: rgba(57, 230, 255, 0.06);
+    border-left: 3px solid var(--neon-cyan);
+    border-radius: 0 6px 6px 0;
+    font-family: Consolas, "Courier New", monospace;
+    text-shadow: 0 0 8px rgba(57, 230, 255, 0.5);
+}
+
+#inventory h2 { margin-bottom: 6px; }
+
+button {
+    display: inline-block;
+    margin: 6px 6px 0 0;
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    color: #041318;
+    background: linear-gradient(180deg, #7df3ff, var(--neon-cyan));
+    border: 1px solid #bffbff;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(57, 230, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    transition: transform 0.08s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+    box-shadow: 0 0 22px rgba(57, 230, 255, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    transform: translateY(-1px);
+}
+
+button:active { transform: translateY(1px); }
+
+#boss button {
+    background: linear-gradient(180deg, #ff8ade, var(--neon-pink));
+    border-color: #ffc2ec;
+    box-shadow: 0 0 12px rgba(255, 62, 200, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    color: #1c0313;
+}
+
+#magasin button {
+    background: linear-gradient(180deg, #ffd88a, var(--neon-amber));
+    border-color: #ffe9bd;
+    box-shadow: 0 0 12px rgba(255, 176, 46, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    color: #241300;
+}
+
+#retour p {
+    min-height: 120px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.9rem;
+    color: #9be9ff;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px dashed var(--brass-dark);
+    border-radius: 6px;
+    padding: 10px;
+}
